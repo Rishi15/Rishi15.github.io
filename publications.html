@@ -1,0 +1,620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title></title>
+<style type="text/css">
+.abs {
+ background-color: #dae2f1;
+ max-width: 800px;
+ padding: 7px;
+ display: none;
+}
+li{
+    margin-top: 10px;
+}
+li:first-child {
+    margin-top:0;
+}
+</style>
+<script type="text/javascript">
+function showAbstract(e){
+   f = e;
+   var div;
+   for(div = e.nextSibling; div.className != "abs"; div = div.nextSibling);
+   if (div.style.display=="block"){
+     div.style.display="";
+   } else {
+     div.style.display="block";
+   }
+   return true;
+}
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+                "HTML-CSS": {
+                    availableFonts: ["Asana-Math"],
+                    preferredFont: "Asana-Math"
+                }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="publications.html" class="current">Publications</a></div>
+<div class="menu-item"><a href="documents/resume/Raaz_CV.pdf">CV</a></div>
+<div class="menu-item"><a href="documents/statements/Raaz_research_short.pdf">Res.&nbsp;St.&nbsp;Short</a></div>
+<div class="menu-item"><a href="documents/statements/Raaz_research_long.pdf">Res.&nbsp;St.&nbsp;Long</a></div>
+<div class="menu-item"><a href="documents/statements/Raaz_teaching.pdf">Teaching&nbsp;St.</a></div>
+<div class="menu-item"><a href="teaching.html">Teaching&nbsp;Ex.</a></div>
+</td>
+<td id="layout-content">
+<p><br />
+</p>
+<p>My research interests span both the theoretical and applied statistical aspects of machine learning (ML) and data science (DS). Together with several excellent collaborators, my past and ongoing works develop novel methods and theory for challenging problems  for data-driven personalized decision-making using ideas from causal inference, reinforcement learning, Bayesian inference, optimization, and high-dimensional statistics, with several applications in healthcare. 
+</p>
+<p>I collect the papers below categorized by the following research topics:
+</p>
+<ul>
+<li><p>Causal Inference and 
+</p>
+</li>
+<li><p>Data Compression
+</p>
+</li>
+<li><p>Prediction and Statistical Inference
+</p>
+</li>
+<li><p>Markov Chain Monte Carlo
+</p>
+</li>
+</ul>
+<p>For a chronological list, please refer to my <a href="documents/resume/Raaz_CV.pdf" target=&ldquo;blank&rdquo;>CV</a> or the <a href="https://scholar.google.com/citations?user=9ehX_58AAAAJ&amp;hl=en" target=&ldquo;blank&rdquo;>google scholar profile</a>. Below, a superscript \(\star\) denotes equal contribution and joint first-authorship, and \(\ddagger\) denotes alphabetical ordering. <b>Clicking on the abstract button displays the abstract of the article on this webpage itself</b>; while other buttons lead to a new webpage.
+</p>
+<h2>Thesis</h2>
+<ul>
+
+
+<li>
+<b> Principled Statistical Approaches For Sampling and Inference in High Dimensions </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i><br/>
+<i> Ph. D. Thesis, 2021 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-180.html">thesis</a>]
+[<a href="documents/bibtex/thesis_bib.txt">bibtex</a>]
+||
+[<a href="documents/slides_poster/thesis_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> The growth in the number of algorithms to identify patterns in modern large-scale datasets has introduced a new dilemma for practitioners: How does one choose between the numerous methods? In supervised machine learning, accuracy on hold-out dataset is the flagship for choice making. This dissertation presents research that can provide principled guidance for making choices in three popular settings where such a flagship measure is not readily available. (I) Convergence of Markov chain Monte Carlo sampling algorithms, used commonly in Bayesian inference, Monte Carlo integration, and stochastic simulation: We provide explicit non-asymptotic guarantees for state-of-the-art sampling algorithms in high dimensions that can help the user pick a sampling method and the number of iterations based on the computational budget at hand. (II) Statistical-computational challenges with mixture model estimation, used commonly with heterogeneous data: We provide non-asymptotic guarantees with Expectation-Maximization for parameter estimation when the number of components is not known, and characterize the number of samples and iterations needed for desired accuracy, that can inform user of the potential two-edged price when dealing with noisy data in high dimensions. (III) Reliable estimation of heterogeneous treatment effects (HTE) in causal inference, crucial for decision making in medicine and public policy: We introduce a data-driven methodology StaDISC that is useful for validating commonly used models for estimating HTE, and for discovering interpretable and stable subgroups with HTE using calibration. While we illustrate its usefulness in precision medicine, we believe the methodology to be of general interest in randomized experiments.
+</div>
+</li>
+
+
+</ul>
+<h2>Causal Inference and Diagnostics</h2>
+<ul>
+
+
+<li>
+<b> Doubly Robust Nearest Neighbors for Factor Models </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>, Katerine Tian, Sabina Tomkins, Predrag Klasnja, Susan Murphy,  Devavrat Shah <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2211.14297">paper</a>]
+<br/><br/>
+
+
+<div class="abs">
+<b>Abstract.</b> We introduce an improved variant of nearest neighbors for counterfactual inference in panel data settings where multiple units are assigned multiple treatments over multiple time points, each sampled with constant probabilities. We call this estimator a doubly robust nearest neighbor estimator and provide a high probability non-asymptotic error bound for the mean parameter corresponding to each unit at each time. Our guarantee shows that the doubly robust estimator provides a (near-)quadratic improvement in the error compared to nearest neighbor estimators analyzed in prior work for these settings.
+</div>
+</li>
+
+<li>
+<b> Assessing Personalization by a Reinforcement Learning Algorithm  </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi$^\star$</i>, Kelly Zhang$^\star$, Prasidh Chhabria, Predrag Klasnja, Susan Murphy <br/>
+<i> Coming soon, 2022+ </i> <br/>
+<br/>
+</li>
+
+
+<li>
+<b> On counterfactual inference with unobserved confounding </b> <br/>
+<i> Abhin Shah, <b>R</b>aaz <b>D</b>wivedi</i>, Devavrat Shah, Gregory Wornell <br/>
+<i> NeurIPS Workshop on Causality for Real-world Impact, 2022 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://openreview.net/pdf?id=e9NQvYNUOAl">paper</a>] 
+[<a href="documents/bibtex/confounding_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/confounding_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/confounding_poster.pdf">poster</a>]
+<br/><br/>
+
+
+<div class="abs">
+<b>Abstract.</b> Given an observational study with $n$ independent but heterogeneous units and one $p$-dimensional sample per unit containing covariates, interventions, and outcomes, our goal is to learn counterfactual distribution for each unit. We consider studies with unobserved confounding which introduces statistical biases between interventions and outcomes as well as exacerbates the heterogeneity across units. Modeling the underlying joint distribution as an exponential family and under suitable conditions, we reduce learning the $n$ unit-level counterfactual distributions to learning $n$ exponential family distributions with heterogeneous parameters and only one sample per distribution. We introduce a convex objective that pools all $n$ samples to jointly learn all $n$ parameters and provide a unit-wise mean squared error bound that scales linearly with the metric entropy of the parameter space. For example, when the parameters are $s$-sparse linear combination of $k$ known vectors, the error is $O(s\log k/p)$. En route, we derive sufficient conditions for compactly supported distributions to satisfy the logarithmic Sobolev inequality.
+</div>
+</li>
+
+<li>
+<b> Counterfactual inference in sequential experimental design </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>, Katerine Tian, Sabina Tomkins, Predrag Klasnja, Susan Murphy,  Devavrat Shah <br/>
+<i> arxiv preprint, 2022 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2202.06891">paper</a>] 
+[<a href="documents/bibtex/counterfactual_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/counterfactual_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/counterfactual_poster.pdf">poster</a>]  
+[<a href="https://www.youtube.com/watch?v=X5bhzwtPLM8">video</a>]
+<br/><br/>
+
+
+<div class="abs">
+<b>Abstract.</b> We consider the problem of counterfactual inference in sequentially designed experiments wherein a collection of $\mathbf{N}$ units each undergo a sequence of interventions for $\mathbf{T}$ time periods, based on policies that sequentially adapt over time. Our goal is counterfactual inference, i.e., estimate what would have happened if alternate policies were used, a problem that is inherently challenging due to the heterogeneity in the outcomes across units and time. To tackle this task, we introduce a suitable latent factor model where the potential outcomes are determined by exogenous unit and time level latent factors. Under suitable conditions, we show that it is possible to estimate the missing (potential) outcomes using a simple variant of nearest neighbors. First, assuming a bilinear latent factor model and allowing for an arbitrary adaptive sampling policy, we establish a distribution-free non-asymptotic guarantee for estimating the missing outcome of \emph{any} unit at \emph{any} time; under suitable regularity condition, this guarantee implies that our estimator is consistent. Second, for a generic non-parametric latent factor model, we establish that the estimate for the missing outcome of any unit at time $\mathbf{T}$ satisfies a central limit theorem as $\mathbf{T} \to \infty$, under suitable regularity conditions. Finally, en route to establishing this central limit theorem, we establish a non-asymptotic mean-squared-error bound for the estimate of the missing outcome of any unit at time $\mathbf{T}$. Our work extends the recently growing literature on inference with adaptively collected data by allowing for policies that pool across units, and also compliments the matrix completion literature when the entries are revealed sequentially in an arbitrarily dependent manner based on prior observed data.
+</div>
+</li>
+
+
+
+<li>
+<b> Stable Discovery of Interpretable Subgroups in Causal Studies </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Yan Shuo Tan$^\star$, Briton Park, Mian Wei, Kevin Horgan, David Madigan, Bin Yu <br/>
+<i> International Statistical Review, 2020 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2008.10109">paper</a>] 
+[<a href="documents/bibtex/stadisc_bib.txt">bibtex</a>] 
+[<a href="https://github.com/Yu-Group/stadisc">code</a>]
+||
+[<a href="documents/slides_poster/stadisc_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/stadisc_poster.pdf">poster</a>]
+[<a href="https://www.youtube.com/watch?v=HKIb0HQ3mfU">video</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Building on Yu and Kumbier's PCS framework and for randomized experiments, we introduce a novel methodology for Stable Discovery of Interpretable Subgroups via Calibration (StaDISC), with large heterogeneous treatment effects. StaDISC was developed during our re-analysis of the 1999-2000 VIGOR study, an 8076 patient randomized controlled trial (RCT), that compared the risk of adverse events from a then newly approved drug, Rofecoxib (Vioxx), to that from an older drug Naproxen. Vioxx was found to, on average and in comparison to Naproxen, reduce the risk of gastrointestinal (GI) events but increase the risk of thrombotic cardiovascular (CVT) events. Applying StaDISC, we fit 18 popular conditional average treatment effect (CATE) estimators for both outcomes and use calibration to demonstrate their poor global performance. However, they are locally well-calibrated and stable, enabling the identification of patient groups with larger than (estimated) average treatment effects. In fact, StaDISC discovers three clinically interpretable subgroups each for the GI outcome (totaling 29.4\% of the study size) and the CVT outcome (totaling 11.0\%).  Complementary analyses of the found subgroups using the 2001-2004 APPROVe study, a separate independently conducted RCT with 2587 patients, provides further supporting evidence for the promise of StaDISC.
+</div>
+</li>
+
+
+
+</ul>
+<h2>Data Compression</h2>
+<ul>
+
+
+
+
+
+<li>
+<b> Compress Then Test: Powerful Kernel Testing in Near-linear Time </b> <br/>
+<i> Carles Domingo-Enrich, <b>R</b>aaz <b>D</b>wivedi</i>, Lester Mackey <br/>
+<i> Coming soon, in conference submission, 2022 </i> <br/>
+<br/>
+</li>
+
+
+<li>
+<b> Distribution Compression in Near-Linear Time </b> <br/>
+Abhishek Shetty, <i> <b>R</b>aaz <b>D</b>wivedi</i>, Lester Mackey <br/>
+<i> To appear in International Conference in Learning Representations (ICLR), 2022 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2111.07941">paper</a>]
+[<a href="documents/bibtex/compress_bib.txt">bibtex</a>] 
+[<a href="https://github.com/microsoft/goodpoints">code</a>] 
+||
+[<a href="documents/slides_poster/near_optimal_slides.pdf">slides</a>]
+[<a href="https://www.msri.org/workshops/1020/schedules/31041">video</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> In distribution compression, one aims to accurately summarize a probability distribution $\mathbb{P}$ using a small number of representative points. Near-optimal thinning procedures achieve this goal by sampling $n$ points from a Markov chain and identifying $\sqrt{n}$ points with $\widetilde{\mathcal{O}}(1/\sqrt{n})$ discrepancy to $\mathbb{P}$. Unfortunately, these algorithms suffer from quadratic or super-quadratic runtime in the sample size $n$. To address this deficiency, we introduce Compress++, a simple meta-procedure for speeding up any thinning algorithm while suffering at most a factor of $4$ in error. When combined with the quadratic-time kernel halving and kernel thinning algorithms of Dwivedi and Mackey (2021), Compress++ delivers $\sqrt{n}$ points with $\mathcal{O}(\sqrt{\log n/n})$ integration error and better-than-Monte-Carlo maximum mean discrepancy in $\mathcal{O}(n \log^3 n)$ time and  $\mathcal{O}( \sqrt{n} \log^2 n )$ space. Moreover, Compress++ enjoys the same near-linear runtime given any quadratic-time input and reduces the runtime of super-quadratic algorithms by a square-root factor. In our benchmarks with high-dimensional Monte Carlo samples and Markov chains targeting challenging differential equation posteriors, Compress++ matches or nearly matches the accuracy of its input algorithm in orders of magnitude less time.
+</div>
+</li>
+
+
+<li>
+<b> Generalized Kernel Thinning </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>, Lester Mackey <br/>
+<i> To appear in International Conference in Learning Representations (ICLR), 2022 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2110.01593">paper</a>]
+[<a href="documents/bibtex/gkt_bib.txt">bibtex</a>] 
+[<a href="https://github.com/microsoft/goodpoints">code</a>]
+||
+[<a href="documents/slides_poster/gkt_compress_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/gkt_compress_poster.pdf">poster</a>]
+[<a href="https://www.msri.org/workshops/1020/schedules/31041">video</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> The kernel thinning (KT) algorithm of Dwivedi and Mackey (2021) compresses a probability distribution more effectively than independent sampling by targeting a reproducing kernel Hilbert space (RKHS) and leveraging a less smooth square-root kernel. Here we provide four improvements.  First, we show that KT applied directly to the target RKHS yields tighter, dimension-free guarantees for any kernel, any distribution, and any fixed function in the RKHS. Second, we show that, for analytic kernels like Gaussian, inverse multiquadric, and sinc, target KT admits maximum mean discrepancy (MMD) guarantees comparable to or better than those of square-root KT without making explicit use of a square-root kernel.  Third, we prove that KT with a fractional power kernel yields better-than-Monte-Carlo MMD guarantees for non-smooth kernels, like Laplace and Mat\'ern, that do not have square-roots. Fourth, we establish that KT applied to a sum of the target and power kernels (a procedure we call KT+) simultaneously inherits the improved MMD guarantees of power KT and the tighter individual function guarantees of target KT.  In our experiments with target KT and KT+, we witness significant improvements in integration error even in $100$ dimensions and when compressing challenging differential equation posteriors.
+</div>
+</li>
+
+
+<li>
+<b> Kernel Thinning </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>, Lester Mackey <br/>
+<i> Extended abstract, Conference on Learning Theory (COLT), 2021 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2105.05842">paper</a>]
+[<a href="documents/bibtex/kt_bib.txt">bibtex</a>]
+[<a href="https://github.com/microsoft/goodpoints">code</a>]
+||
+[<a href="documents/slides_poster/kt_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/kt_poster.pdf">poster</a>]
+[<a href="http://www.learningtheory.org/colt2021/virtual/poster_1266.html">video</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> We introduce kernel thinning, a new procedure for compressing a distribution $\mathbb{P}$ more effectively than i.i.d. sampling or standard thinning. Given a suitable reproducing kernel $\mathbf{k}$ and $\mathcal{O}(n^2)$ time, kernel thinning compresses an $n$-point approximation to $\mathbb{P}$ into a $\sqrt{n}$-point approximation with comparable worst-case integration error across the associated reproducing kernel Hilbert space. With high probability, the maximum discrepancy in integration error is $\mathcal{O}_d(n^{-1/2}\sqrt{\log n})$ for compactly supported $\mathbb{P}$ and $\mathcal{O}_d(n^{-\frac{1}{2}} \sqrt{(\log n)^{d+1} \log\log n})$ for sub-exponential $\mathbb{P}$ on $\mathbb{R}^d$.  In contrast, an equal-sized i.i.d.\ sample from $\mathbb{P}$ suffers  $\Omega(n^{-1/4})$ integration error. Our sub-exponential guarantees resemble the classical quasi-Monte Carlo error rates for uniform $\mathbb{P}$ on $[0,1]^d$ but apply to general distributions on $\mathbb{R}^d$ and a wide range of common kernels. We use our results to derive explicit non-asymptotic maximum mean discrepancy bounds for Gaussian, Mat'ern, and B-spline kernels and present two vignettes illustrating the practical benefits of kernel thinning over i.i.d. sampling and standard Markov chain Monte Carlo thinning, in dimensions $d=2$ through $100$.
+</div>
+</li>
+
+
+<li>
+<b> The Power of Online Thinning in Reducing Discrepancy </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>$^\ddagger$, Ohad N. Feldheim, Ori-Gurel Gurevich, Aaditya Ramdas <br/>
+<i>Probability Theory and Related Fields, 2019 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="documents/papers/haar_paper.pdf">paper</a>]
+[<a href="documents/bibtex/haar_bib.txt">bibtex</a>]
+||
+[<a href="documents/slides_poster/haar_poster.pdf">poster</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Consider an infinite sequence of independent, uniformly chosen points from $[0, 1]^d$.
+After looking at each point in the sequence, an overseer is allowed to either keep it
+or reject it, and this choice may depend on the locations of all previously kept points.
+However, the overseer must keep at least one of every two consecutive points. We call
+a sequence generated in this fashion a two-thinning sequence. Here, the purpose of the
+overseer is to control the discrepancy of the empirical distribution of points, that is,
+after selecting $n$ points, to reduce the maximal deviation of the number of points inside
+any axis-parallel hyper-rectangle of volume $A$ from $n A$. Our main result is an explicit
+low complexity two-thinning strategy which guarantees discrepancy of $ O(\log^{2d+1} n)$
+for all $n$ with high probability [compare with $\Theta(\sqrt{n \log \log n})$ without thinning]. The
+case $d = 1$ of this result answers a question of Benjamini. We also extend the construction to achieve the same asymptotic bound for $(1+\beta)$-thinning, a set-up in which rejecting is only allowed with probability $\beta$ independently for each point. In addition,
+we suggest an improved and simplified strategy which we conjecture to guarantee discrepancy of $ O(\log^{d+1} n)$ [compare with $\Theta(\log^d n)$, the best known construction of a low discrepancy sequence]. Finally, we provide theoretical and empirical evidence for our conjecture, and provide simulations supporting the viability of our construction for applications
+</div>
+</li>
+
+
+
+</ul>
+<h2>Prediction and Statistical inference </h2>
+<ul>
+
+
+<li>
+<b> Revisiting Minimum Description Length Complexity in Overparameterized Models </b> <br/>
+ <i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Chandan  Singh$^\star$, Bin Yu, Martin Wainwright <br/>
+<i> Accepted with minor revision at Journal of Machine Learning Research, 2022+ </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2006.10189">paper</a>] 
+[<a href="documents/bibtex/mdl_bib.txt">bibtex</a>] 
+[<a href="https://github.com/csinva/mdl-complexity">code</a>]
+||
+[<a href="documents/slides_poster/mdl_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/mdl_poster.pdf">poster</a>]
+[<a href="https://www.youtube.com/watch?v=P4S-JQ_fSdo">video</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Complexity is a fundamental concept underlying statistical learning theory that aims to inform generalization performance. Parameter count, while successful in low-dimensional settings, is not well-justified for overparameterized settings when the number of parameters is more than the number of training samples. We revisit complexity measures based on Rissanen's principle of minimum description length (MDL) and define a novel MDL-based complexity (MDL-COMP) that remains valid for overparameterized models. MDL-COMP is defined via an optimality criterion over the encodings induced by a good Ridge estimator class.
+We provide an extensive theoretical characterization of MDL-COMP for linear models and kernel methods and show that it is not just a function of parameter count, but rather a function of the singular values of the design or the kernel matrix and the signal-to-noise ratio.
+
+For a linear model with $n$ observations, $d$ parameters, and i.i.d. Gaussian predictors, MDL-COMP scales linearly with $d$ when $d < n$, but the scaling is exponentially smaller---$\log d$ for $d > n$. For kernel methods, we show that MDL-COMP informs minimax in-sample error, and can decrease as the dimensionality of the input increases. We also prove that MDL-COMP upper bounds the in-sample mean squared error (MSE). Via an array of simulations and real-data experiments, we show that a data-driven Prac-MDL-COMP informs hyper-parameter tuning for optimizing test MSE with ridge regression in limited data settings, sometimes improving upon cross-validation and (always) saving computational costs. Finally, our findings also suggest that the recently observed double decent phenomenons in overparameterized models might be a consequence of the choice of non-ideal estimators.
+</div>
+</li>
+
+
+<li>
+<b> Instability, Computational Efficiency, and Statistical Accuracy </b> <br/>
+Nhat Ho$^\star$, Koulik Khamaru$^\star$, <i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Michael Jordan, Martin Wainwright, Bin Yu <br/>
+ <i> Accepted with minor revision at Journal of Machine Learning Research, 2022+ </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/2005.11411">paper</a>] 
+[<a href="documents/bibtex/instability_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/instability_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/overspecified_em_poster.pdf">poster</a>] 
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Many statistical estimators are defined as the fixed point of a
+  data-dependent operator, with estimators based on minimizing a
+  cost function being an important special case.  The limiting
+  performance of such estimators depends on the properties of the
+  population-level operator in the idealized limit of infinitely many
+  samples.  We develop a general framework that yields bounds on
+  statistical accuracy based on the interplay between the
+  deterministic convergence rate of the algorithm at the population
+  level, and its degree of (in)stability when applied to an empirical
+  object based on $n$ samples.  Using this framework, we analyze both
+  stable forms of gradient descent and some higher-order and unstable
+  algorithms, including Newton's method and its cubic-regularized
+  variant, as well as the EM algorithm. We provide applications of our
+  general results to several concrete classes of models, including
+  Gaussian mixture estimation, non-linear regression models, and informative
+  non-response models.  We exhibit cases in which an unstable
+  algorithm can achieve the same statistical accuracy as a stable
+  algorithm in exponentially fewer steps---namely, with the number of
+  iterations being reduced from polynomial to logarithmic in sample
+  size $n$.
+</div>
+</li>
+
+
+
+<li>
+<b> Curating a COVID-19 Data Repository and Forecasting County-Level Death Counts in the United States </b> <br/>
+Nick Altieri$^{\ddagger}$, Rebecca Barter, James Duncan, <i> <b>R</b>aaz <b>D</b>wivedi</i>, Karl Kumbier, Xiao Li, Robert Netzorg, Briton Park, Chandan Singh, Yan Shuo Tan, Tiffany Tang, Yu Wang, Chao Zhang, Bin Yu <br/>
+<i> Harvard Data Science Review, 2020 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://hdsr.mitpress.mit.edu/pub/p6isyf0g/release/4">paper</a>] 
+[<a href="documents/bibtex/clep_bib.txt">bibtex</a>] 
+[<a href="https://covidseverity.com/">website</a>]
+||
+[<a href="documents/slides_poster/clep_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/clep_poster.pdf">poster</a>]
+[<a href="https://www.youtube.com/watch?v=HKIb0HQ3mfU">video</a>]
+[<a href="https://covidseverity.com/assets/blog/">blog</a>]
+[<a href="https://engineering.berkeley.edu/news/2020/04/getting-the-right-equipment-to-the-right-people/">news</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Building on Yu and Kumbier's PCS framework and for randomized experiments, we introduce a novel methodology for Stable Discovery of Interpretable Subgroups via Calibration (StaDISC), with large heterogeneous treatment effects. StaDISC was developed during our re-analysis of the 1999-2000 VIGOR study, an 8076 patient randomized controlled trial (RCT), that compared the risk of adverse events from a then newly approved drug, Rofecoxib (Vioxx), to that from an older drug Naproxen. Vioxx was found to, on average and in comparison to Naproxen, reduce the risk of gastrointestinal (GI) events but increase the risk of thrombotic cardiovascular (CVT) events. Applying StaDISC, we fit 18 popular conditional average treatment effect (CATE) estimators for both outcomes and use calibration to demonstrate their poor global performance. However, they are locally well-calibrated and stable, enabling the identification of patient groups with larger than (estimated) average treatment effects. In fact, StaDISC discovers three clinically interpretable subgroups each for the GI outcome (totaling 29.4\% of the study size) and the CVT outcome (totaling 11.0\%).  Complementary analyses of the found subgroups using the 2001-2004 APPROVe study, a separate independently conducted RCT with 2587 patients, provides further supporting evidence for the promise of StaDISC.
+</div>
+</li> 
+
+
+<li>
+<b> Sharp Analysis of Expectation-Maximization for Weakly Identifiable Mixture Models </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Nhat Ho$^\star$, Koulik Khamaru$^\star$,  Michael Jordan, Martin Wainwright, Bin Yu <br/>
+<i> International Conference on Artificial Intelligence and Statistics (AISTATS) 23, 2020 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/1902.00194">paper</a>]
+[<a href="documents/bibtex/overspecified_scale_em_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/overspecified_scale_em_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> 
+We study a class of weakly identifiable location-scale mixture models for which the maximum likelihood estimates based on $n$ i.i.d. samples are known to have lower accuracy than the classical  $n^{- \frac{1}{2}}$ error. We investigate whether the  Expectation-Maximization (EM) algorithm also converges slowly for these models.  We provide a rigorous characterization of EM for fitting a weakly identifiable Gaussian mixture in a univariate setting where we prove that the EM algorithm converges in order $n^{\frac{3}{4}}$ steps and returns estimates that are at a Euclidean distance of order ${ n^{- \frac{1}{8}}}$ and ${ n^{-\frac{1} {4}}}$ from the true location and scale parameter respectively. Establishing the slow rates in the univariate setting requires a novel localization argument with two stages, with each stage involving an epoch-based argument applied to a different surrogate EM operator at the population level.  We demonstrate several multivariate ($d \geq 2$) examples that exhibit the same slow rates as the univariate case. We also prove slow statistical rates in higher dimensions in a special case, when the fitted covariance is constrained to be a multiple of the identity.
+</div>
+</li>
+
+<li>
+<b> Singularity, Misspecification and the Convergence Rate of EM </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Nhat Ho$^\star$, Koulik Khamaru$^\star$,  Michael Jordan, Martin Wainwright, Bin Yu <br/>
+<i> Annals of Statistics, Volume 48, Number 6 (2020), 3161-3182 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://arxiv.org/abs/1810.00828">paper</a>]
+[<a href="documents/bibtex/overspecified_em_bib.txt">bibtex</a>] ||
+ [<a href="documents/slides_poster/overspecified_em_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/overspecified_em_poster.pdf">poster</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> A line of recent work has analyzed the behavior of the
+Expectation-Maximization (EM) algorithm in the well-specified setting,
+in which the population likelihood is locally strongly concave around
+its maximizing argument.  Examples include suitably separated Gaussian
+mixture models and mixtures of linear regressions.  We consider
+over-specified settings in which the number of fitted components is
+larger than the number of components in the true distribution. Such
+mis-specified settings can lead to singularity in the Fisher
+information matrix, and moreover, the maximum likelihood estimator
+based on $n$ i.i.d. samples in $d$ dimensions can have a non-standard
+$\mathcal{O}((d/n)^{\frac{1}{4}})$ rate of convergence.  Focusing on
+the simple setting of two-component mixtures fit to a $d$-dimensional
+Gaussian distribution, we study the behavior of the EM algorithm both
+when the mixture weights are different (unbalanced case), and are
+equal (balanced case). Our analysis reveals a sharp distinction
+between these two cases: in the former, the EM algorithm converges
+geometrically to a point at Euclidean distance of
+$\mathcal{O}((d/n)^{\frac{1}{2}})$ from the true parameter, whereas in
+the latter case, the convergence rate is exponentially slower, and the
+fixed point has a much lower $\mathcal{O}((d/n)^{\frac{1}{4}})$
+accuracy.  Analysis of this singular case requires the introduction of
+some novel techniques: in particular, we make use of a careful form of
+localization in the associated empirical process, and develop a
+recursive argument to progressively sharpen the statistical rate.
+</div>
+</li>
+
+
+<li>
+<b> Theoretical Guarantees for EM Under Misspecified Gaussian Mixture Models </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Nhat Ho$^\star$, Koulik Khamaru$^\star$,  Michael Jordan, Martin Wainwright, Bin Yu <br/>
+<i> Advances in Neural Information Processing Systems (NeurIPS) 32, 2018 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="http://papers.nips.cc/paper/8176-theoretical-guarantees-for-em-under-misspecified-gaussian-mixture-models">paper</a>]
+[<a href="documents/bibtex/misspecified_em_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/misspecified_em_poster.pdf">poster</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Recent years have witnessed substantial progress in understanding
+  the behavior of EM for mixture models that are correctly specified.
+  Given that model mis-specification is common in practice, it is
+  important to understand EM in this more general setting.  We provide
+  non-asymptotic guarantees for the population and sample-based EM
+  algorithms when used to estimate parameters of certain mis-specified
+  Gaussian mixture models.  Due to mis-specification, the EM iterates
+  no longer converge to the true model and instead converge to the
+  projection of the true model onto the fitted model class.  We
+  provide two classes of theoretical guarantees: (a) a
+  characterization of the bias introduced due to the
+  mis-specification; and (b) guarantees of geometric convergence of
+  the population EM to the model projection given a suitable
+  initialization.  This geometric convergence rate for population EM
+  implies that the EM algorithm based on $n$ samples converges to an
+  estimate with $1/\sqrt{n}$ accuracy.  We validate our theoretical
+  findings in different cases via several numerical examples.
+</div>
+</li>
+
+
+<li>
+<b> Gaussian Approximations in High Dimensional Estimation</b> <br/>
+Vivek Borkar$^\ddagger$, <i> <b>R</b>aaz <b>D</b>wivedi</i>, Neeraja Sahasrabudhe<br/>
+<i> Systems \& Control Letters, Volume 92, June 2016, Pages 42-45</i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="documents/papers/gauss_approx_paper.pdf">paper</a>]
+[<a href="documents/bibtex/gauss_approx_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/gauss_approx_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Several estimation techniques assume validity of Gaussian approximations for estimation purposes. Interestingly, these ensemble methods have proven to work very well for high-dimensional data even when the distributions involved are not necessarily Gaussian. We attempt to bridge the gap between this oft-used computational assumption and the theoretical understanding of why this works, by employing some recent results on random projections on low dimensional subspaces and concentration inequalities.
+</div>
+</li>
+
+
+</ul>
+<h2>Markov Chain Monte Carlo</h2>
+<ul>
+
+
+<li>
+<b> Fast Mixing of Metropolized Hamiltonian Monte Carlo: Benefits of Multi-Step Gradients </b> <br/>
+Yuansi Chen, <i> <b>R</b>aaz <b>D</b>wivedi</i>, Martin Wainwright, Bin Yu <br/>
+<i> Journal of Machine Learning Research (JMLR) 21(92):1−72, 2020 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="https://jmlr.org/papers/v21/19-441.html">paper</a>]
+[<a href="documents/bibtex/hmc_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/mcmc_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> Hamiltonian Monte Carlo (HMC) is a state-of-the-art Markov chain Monte Carlo sampling algorithm for drawing samples from smooth probability
+  densities over continuous spaces. We study the variant most widely
+  used in practice, Metropolized HMC with the St\"{o}rmer-Verlet or
+  leapfrog integrator, and make two primary contributions.  First, we
+  provide a non-asymptotic upper bound on the mixing time of the
+  Metropolized HMC with explicit choices of step-size and number of
+  leapfrog steps.  This bound gives a precise quantification of the
+  faster convergence of Metropolized HMC relative to simpler MCMC
+  algorithms such as the Metropolized random walk, or Metropolized
+  Langevin algorithm.  Second, we provide a general framework for
+  sharpening mixing time bounds of Markov chains initialized at a
+  substantial distance from the target distribution over continuous spaces.  We apply this sharpening device to the Metropolized random walk and Langevin
+  algorithms, thereby obtaining improved mixing time bounds from a
+  non-warm initial distribution.
+</div>
+</li>
+
+<li>
+<b> Log-concave Sampling: Metropolis-Hastings Algorithms Are Fast </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Yuansi Chen$^\star$, Martin Wainwright, Bin Yu <br/>
+<i> Journal of Machine Learning Research (JMLR) 20(183):1−42, 2019 </i> <br/>
+<i> Extended abstract in Conference on Learning Theory (COLT), 2018 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="http://jmlr.org/papers/v20/19-306.html">paper</a>]
+[<a href="documents/bibtex/mala_bib.txt">bibtex</a>]
+[<a href="https://github.com/yuachen/mala_public">code</a>]
+||
+[<a href="documents/slides_poster/mala_slides.pdf">slides</a>]
+[<a href="documents/slides_poster/mala_poster.pdf">poster</a>]
+[<a href="https://www.youtube.com/watch?v=fWaqxoPWWKY">video</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> We study the problem of sampling from a strongly log-concave density
+supported on $\mathbb{R}^d$, and prove a non-asymptotic upper bound on
+the mixing time of the Metropolis-adjusted Langevin algorithm (MALA).
+The method draws samples by simulating a Markov chain obtained from
+the discretization of an appropriate Langevin diffusion, combined with
+an accept-reject step.  Relative to known guarantees for the
+unadjusted Langevin algorithm (ULA), our bounds show that the use of
+an accept-reject step in MALA leads to an exponentially improved
+dependence on the error-tolerance.  Concretely, in order to obtain
+samples with TV error at most $\delta$ for a density with condition
+number $\kappa$, we show that MALA requires $\mathcal{O} \big(\kappa d
+\log(1/\delta) \big)$ steps from a warm start, as compared to the
+$\mathcal{O} \big(\kappa^2 d/\delta^2 \big)$ steps established in past
+work on ULA.  We also demonstrate the gains of a modified version of
+MALA over ULA for weakly log-concave densities.  Furthermore, we
+derive mixing time bounds for the Metropolized random walk (MRW) and
+obtain $\mathcal{O}(\kappa)$ mixing time slower than MALA.  We provide
+numerical examples that support our theoretical findings, and
+demonstrate the benefits of Metropolis-Hastings adjustment for
+Langevin-type sampling algorithms.
+</div>
+</li>
+
+
+
+<li>
+<b> Fast MCMC Sampling Algorithms on Polytopes</b> <br/>
+ Yuansi Chen$^\star$, <i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Martin Wainwright, Bin Yu <br/>
+<i> Journal of Machine Learning Research (JMLR) 19(55):1−86, 2018 </i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="http://jmlr.org/papers/v19/18-158.html">paper</a>]
+[<a href="documents/bibtex/polytope_bib.txt">bibtex</a>]
+[<a href="https://github.com/yuachen/polytopewalk">code</a>]
+||
+[<a href="documents/slides_poster/polytope_mala_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> We propose and analyze two new MCMC sampling algorithms, the Vaidya walk and the
+John walk, for generating samples from the uniform distribution over a
+polytope.  Both random walks are sampling
+algorithms derived from interior point methods. The former is based on
+volumetric-logarithmic barrier introduced by Vaidya whereas the latter
+uses John's ellipsoids.  We show that the Vaidya walk mixes in
+significantly fewer steps than the logarithmic-barrier based Dikin
+walk studied in past work.  For a polytope in $\mathbb R^d$ defined by
+$n > d$ linear constraints, we show that the mixing time from a
+warm start is bounded as $\mathcal O(n^{0.5}d^{1.5})$, compared to
+the $\mathcal O(nd)$ mixing time bound for the Dikin walk.  The
+cost of each step of the Vaidya walk is of the same order as the Dikin
+walk, and at most twice as large in terms of constant pre-factors.
+For the John walk, we prove an
+$\mathcal O(d^{2.5}\cdot\log^4(n/d))$ bound on its mixing time
+and conjecture that an improved variant of it could achieve a mixing
+time of $\mathcal O(d^{2}\cdot\mathrm{polylog}(n/d))$.  Additionally,
+we propose variants of the Vaidya and John walks that mix in
+polynomial time from a deterministic starting point. The speed-up of the
+Vaidya walk over the Dikin walk are illustrated in numerical examples.
+</div>
+</li>
+
+<li>
+<b> Vaidya Walk: A Sampling Algorithm Based on Volumetric-Logarithmic Barrier</b> <br/>
+ Yuansi Chen$^\star$, <i> <b>R</b>aaz <b>D</b>wivedi</i>$^\star$, Martin Wainwright, Bin Yu <br/>
+<i> 55th Annual Allerton Conference on Communication, Control, and Computing  (Allerton), 2017</i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="documents/papers/vaidya_walk_paper.pdf">paper</a>]
+[<a href="documents/bibtex/vaidya_bib.txt">bibtex</a>]
+[<a href="https://github.com/yuachen/polytopewalk">code</a>]
+||
+[<a href="documents/slides_poster/vaidya_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> The problem of sampling from the uniform distribution over a polytope arises in various contexts. We propose a new random walk for this purpose, which we refer to as the Vaidya walk, since it is based on the volumetric-logarithmic barrier introduced by Vaidya in the context of interior point methods for optimization. We show that the Vaidya walk mixes in significantly fewer steps compared to the Dikin walk, a random walk previously studied by Kannan and Narayanan. In particular, we prove that for a polytope in $\mathbb R^d$ defined by $n$ constraints, the Vaidya walk mixes in $\mathcal O (\sqrt{n/d})$ fewer steps than the Dikin walk. The per iteration cost for our method is at most twice that of the Dikin walk, and hence the speed up is significant for polytopes with $n \gg d$. Furthermore, the algorithm is also faster than the Ball walk and Hit-and-Run for a large family of polytopes. We illustrate the speed-up of the Vaidya walk over the Dikin walk via several numerical examples and discuss possible new and faster algorithms for sampling from polytopes.
+</div>
+</li>
+
+
+<li>
+<b> Removing Sampling Bias in Networked Stochastic Approximation </b> <br/>
+<i> <b>R</b>aaz <b>D</b>wivedi</i>, Vivek Borkar <br/>
+<i> International Conference on Signal Processing and Communications (SPCOM), 2014</i> <br/>
+[<a href="javascript:void(0)" onclick="showAbstract(this)" class="title">abstract</a>] 
+[<a href="documents/papers/spcom_paper.pdf">paper</a>]
+[<a href="documents/bibtex/spcom_bib.txt">bibtex</a>] ||
+[<a href="documents/slides_poster/stochastic_slides.pdf">slides</a>]
+<br/><br/>
+<div class="abs">
+<b>Abstract.</b> We consider a stochastic approximation implemented on a network of computing elements corresponding to the nodes of a connected graph wherein each node polls one or more of its neighbors at random and pulls the relevant data from there. A blind implementation suffers from `sampling bias'’' whereby each node's contribution to the computation gets weighed by its frequency of being polled. We propose a modified step size schedule that works around this problem. As an example, we propose a modification of an existing scheme for reputation systems that removes such a bias therein.
+</div>
+</li>
+<a href="https://info.flagcounter.com/IO8p"></a>
+
+</ul>
+<div id="footer">
+<div id="footer-text">
+Page generated 2022-12-06 13:11:13 EST, by <a href="https://github.com/wsshin/jemdoc_mathjax" target="blank">jemdoc+MathJax</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
