@@ -1,104 +1,513 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rishi Dhar</title>
+<meta name="description" content="PhD researcher at ITLR, University of Stuttgart. Direct numerical simulation of thixotropic liquid jet atomization, GPU-accelerated multiphase CFD.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- tokens ---------- */
+  :root{
+    --paper:#EEF1F4;
+    --ink:#16202B;
+    --muted:#566474;
+    --rule:#C9D1DA;
+    --lam1:#24356B;   /* structure intact, lambda = 1 */
+    --lamh:#2F8C8A;   /* lambda = 0.5 */
+    --lam0:#E8B03A;   /* structure broken, lambda = 0 */
+    --link:#24356B;
+    --tag:#DDE3EA;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101820; --ink:#E6ECF2; --muted:#93A1B1; --rule:#2A3644;
+      --lam1:#6F86D6; --lamh:#3FB0AC; --lam0:#F0BE55; --link:#9DB0F0; --tag:#1C2733;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101820; --ink:#E6ECF2; --muted:#93A1B1; --rule:#2A3644;
+    --lam1:#6F86D6; --lamh:#3FB0AC; --lam0:#F0BE55; --link:#9DB0F0; --tag:#1C2733;
+  }
+
+  /* ---------- base ---------- */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:400 1.0625rem/1.65 "Newsreader", Georgia, serif;
+    font-optical-sizing:auto;
+  }
+  h1,h2,h3,.ui{font-family:"Schibsted Grotesk", system-ui, sans-serif}
+  a{color:var(--link); text-underline-offset:3px; text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
+  :focus-visible{outline:2px solid var(--lam0); outline-offset:3px; border-radius:2px}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 16px}
+  @media (min-width:720px){ .wrap{padding:0 40px} }
+
+  /* ---------- header ---------- */
+  header.top{display:flex; justify-content:space-between; align-items:center; padding:22px 0 0; gap:16px; flex-wrap:wrap}
+  .mark{font:700 1rem/1 "Schibsted Grotesk",sans-serif; color:var(--ink); text-decoration:none}
+  nav.ui{display:flex; gap:20px; font-size:.95rem; flex-wrap:wrap}
+  nav.ui a{color:var(--muted); text-decoration:none}
+  nav.ui a:hover{color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 0}
+  .hero h1{
+    font-weight:800; font-size:clamp(2.6rem, 7vw, 5.2rem); line-height:.98;
+    letter-spacing:-.025em; margin:0; max-width:14ch;
+  }
+  .hero p.lede{font-size:1.25rem; line-height:1.5; max-width:34em; color:var(--ink); margin:22px 0 0}
+  .who{display:flex; align-items:center; gap:14px; margin-top:22px}
+  .who img{width:64px; height:64px; border-radius:50%; object-fit:cover; background:var(--tag); overflow:hidden; font-size:0; flex:none}
+  .hero .where{font:500 .95rem/1.4 "Schibsted Grotesk",sans-serif; color:var(--muted); margin:0}
+  .hero .where a{color:inherit}
+
+  .jet{margin:44px 0 0; position:relative}
+  .jet canvas{display:block; width:100%; height:240px}
+  .jet figcaption{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    font:400 .85rem/1.4 "Schibsted Grotesk",sans-serif; color:var(--muted); margin-top:10px}
+  .scale{display:flex; align-items:center; gap:8px}
+  .scale i{display:inline-block; width:120px; height:8px; border-radius:4px;
+    background:linear-gradient(90deg,var(--lam0),var(--lamh),var(--lam1))}
+
+  /* ---------- sections ---------- */
+  section{padding:88px 0 0}
+  .sec-head{display:grid; gap:8px; margin-bottom:32px}
+  @media (min-width:880px){ .sec-head{grid-template-columns:240px 1fr; align-items:baseline} }
+  h2{font-weight:700; font-size:1.7rem; letter-spacing:-.01em; margin:0}
+  .sec-head p{margin:0; color:var(--muted); max-width:38em}
+
+  /* research: wide primary + list */
+  .primary{
+    border-left:4px solid var(--lam1); padding:4px 0 4px 24px; margin-bottom:40px;
+  }
+  .primary h3{font-size:1.45rem; line-height:1.2; margin:0 0 6px; letter-spacing:-.01em}
+  .primary .meta{font:500 .9rem "Schibsted Grotesk",sans-serif; color:var(--muted); margin-bottom:12px}
+  .primary p{max-width:40em; margin:0 0 10px}
+
+  .plist{list-style:none; margin:0; padding:0; display:grid; gap:0}
+  @media (min-width:880px){ .plist{grid-template-columns:1fr 1fr; column-gap:48px} }
+  .plist li{padding:22px 0; border-top:1px solid var(--rule)}
+  .plist h3{font-size:1.1rem; margin:0 0 4px; line-height:1.3}
+  .plist p{margin:6px 0 10px; max-width:36em}
+  .status{font:500 .82rem "Schibsted Grotesk",sans-serif; display:inline-flex; align-items:center; gap:7px; color:var(--muted)}
+  .status::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--c, var(--muted))}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+  .tags span{font:500 .78rem/1 "Schibsted Grotesk",sans-serif; background:var(--tag); padding:5px 8px; border-radius:3px; color:var(--ink)}
+
+  /* skills */
+  .skills{display:grid; gap:28px}
+  @media (min-width:720px){ .skills{grid-template-columns:repeat(3,1fr); gap:40px} }
+  .skills h3{font-size:1rem; margin:0 0 10px}
+  .skills ul{list-style:none; margin:0; padding:0}
+  .skills li{padding:5px 0; border-bottom:1px dotted var(--rule)}
+  .skills li small{font:400 .82rem "Schibsted Grotesk",sans-serif; color:var(--muted); margin-left:6px}
+
+  /* updates: real timeline, newest first */
+  .log{list-style:none; margin:0; padding:0; position:relative}
+  .log li{display:grid; grid-template-columns:96px 1fr; gap:16px; padding:0 0 22px; position:relative}
+  .log time{font:500 .9rem/1.65 "Schibsted Grotesk",sans-serif; color:var(--muted); font-variant-numeric:tabular-nums}
+  .log .body{border-left:2px solid var(--rule); padding-left:18px; position:relative}
+  .log .body::before{content:""; position:absolute; left:-6px; top:.55em; width:10px; height:10px; border-radius:50%; background:var(--paper); border:2px solid var(--lam1)}
+  .log li:first-child .body::before{background:var(--lam0); border-color:var(--lam0)}
+  .log p{margin:0; max-width:40em}
+  .log .more{margin-top:8px}
+  button.ui{font:500 .95rem "Schibsted Grotesk",sans-serif; background:none; border:1px solid var(--rule); color:var(--ink); padding:8px 14px; border-radius:4px; cursor:pointer}
+  button.ui:hover{border-color:var(--ink)}
+
+  /* experience */
+  .xp{list-style:none; margin:0; padding:0}
+  .xp li{display:grid; gap:4px; padding:16px 0; border-top:1px solid var(--rule)}
+  @media (min-width:720px){ .xp li{grid-template-columns:240px 1fr; gap:24px} }
+  .xp .org{font:700 1rem/1.4 "Schibsted Grotesk",sans-serif}
+  .xp strong{font-weight:500}
+  .xp .org span{display:block; font-weight:400; color:var(--muted); font-size:.88rem}
+  .xp p{margin:0}
+
+  footer.wrap{padding-top:96px; padding-bottom:48px}
+  .contact{display:flex; flex-wrap:wrap; gap:12px 28px; font:500 1.05rem "Schibsted Grotesk",sans-serif}
+  footer small{display:block; color:var(--muted); margin-top:28px; font:400 .82rem "Schibsted Grotesk",sans-serif}
+</style>
 </head>
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
-<td id="layout-menu">
-<div class="menu-item"><a href="index.html" class="current">Home</a></div>
-<div class="menu-item"><a href="Rishi_Dhar_CV.pdf">CV</a></div>
-</td>
-<td id="layout-content">
-<p><br />
-</p>
-<h1>Rishi Dhar</h1>
-<table class="imgtable"><tr><td>
-<img src="rishi_pic.JPG" alt="Coming soon!" width="170px" height="201px" />&nbsp;</td>
-<td align="left"><ul>
-    <li>
-        <p>
-            <i>Feb 2024 </i> Incoming Phd Student, <a href="https://www.itlr.uni-stuttgart.de/en/" target=&ldquo;blank&rdquo;>ITLR, <a href="https://www.uni-stuttgart.de/" target=&ldquo;blank&rdquo;>Universität Stuttgart, under<a href="https://www.itlr.uni-stuttgart.de/team/Weigand-00003/" target=&ldquo;blank&rdquo;>Prof. Dr.+ing. Bernhard Weigand, in the <a href="https://www.project.uni-stuttgart.de/dropit/" target=&ldquo;blank&rdquo;>DROPIT Collaboration group </a> 
-              
-              
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>June 2023- November 2023</i> Master Thesis, <a href="https://ecosystem.siemens.com/researchandinnovation/munich/overview" target=&ldquo;blank&rdquo;></a>, <a href="https://ecosystem.siemens.com/researchandinnovation/munich/overview" target=&ldquo;blank&rdquo;>SIEMENS, Munich</a>, advised by <a href="https://de.linkedin.com/in/theresapasch" target=&ldquo;blank&rdquo;>Msc. Theresa Pasch</a> 
-        </p>
-    </li>
 
-    <li>
-        <p>
-            <i>Mar 2023- June 2023</i> Intern, <a href="https://ecosystem.siemens.com/researchandinnovation/munich/overview" target=&ldquo;blank&rdquo;></a>, <a href="https://ecosystem.siemens.com/researchandinnovation/munich/overview" target=&ldquo;blank&rdquo;>SIEMENS, Munich</a>, advised by <a href="https://de.linkedin.com/in/theresapasch" target=&ldquo;blank&rdquo;>Msc. Theresa Pasch</a> (<a href="praktikum_bericht.pdf" target=&ldquo;blank&rdquo;>Internship</a>)
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>Jan 2022-Present:</i> Student Researcher,Institute of Combustion Technology <a href="https://itv.rwth-aachen.de/index.php" target=&ldquo;blank&rdquo;>ITV</a>, advised by <a href="https://www.itv.rwth-aachen.de/institut/mitarbeiter/avijit-saha/" target=&ldquo;blank&rdquo;>Msc. Avijit Saha</a> 
-        </p>
-    </li>
-    <li>
-        <p>
-             <i>Mar 2023-June2023:</i> Student Researcher,Institute of Jet Propulsion and Turbomachinery <a href="https://www.ist.rwth-aachen.de/cms/~rait/IST/?lidx=1" target=&ldquo;blank&rdquo;>IST</a>, advised by <a href="https://www.rwth-aachen.de/cms/root/Die-RWTH/Kontakt-Anreise/Kontakt/~bdfr/Mitarbeiter-CAMPUS-/?contact=aaaaaaaaaacwznx&gguid=0xE255D46A3DB1EF439D6DD400CDBEA6F3" target=&ldquo;blank&rdquo;>Msc. Nima Fard Afsar</a> 
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>Oct 2021- Dec 2023:</i> MS, Computer Aided Conception in Mechanical Engineering., <a href="https://www.rwth-aachen.de/go/id/a/?lidx=1" target=&ldquo;blank&rdquo;>RWTH</a>         
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>2017-2021:</i> Assistant Manager, Bharat Petroleum Corporation Limited <a href="https://www.bharatpetroleum.in/" target=&ldquo;blank&rdquo;>BPCL,Surat</a>
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>2013-2017:</i> B. Tech., <a href="https://www.manit.ac.in/content/mechanical-engineering" target=&ldquo;blank&rdquo;>ME</a>, <a href="https://www.manit.ac.in/" target=&ldquo;blank&rdquo;>MANIT, Bhopal</a>, advised by <a href="https://www.manit.ac.in/content/dr-rajesh-gupta" target=&ldquo;blank&rdquo;>Prof. Rajesh Gupta</a> (<a href="major_project.pdf" target=&ldquo;blank&rdquo;>thesis</a>)
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>Research</i>: Multiphase Flows; turbulence modelling, neural networks, solver development CFD, FEM and DEM.  
-        </p>
-    </li>
-    <li>
-        <p>
-            <i>Contact and quick links</i>: <a href="mailto:rishi.dhar@rwth-aachen.de" target=&ldquo;blank&rdquo;>rishi.dhar@rwth-aachen.de</a>,
-            <a href="https://scholar.google.com/citations?hl=en&user=Dbk4V_cAAAAJ" target=&ldquo;blank&rdquo;>Google Scholar</a>,
-            <a href="https://github.com/Rishi15" target=&ldquo;blank&rdquo;>Github</a>.
-        </p>
-    </li>
-</ul>
-</td></tr></table>
-<ul>
-<li><p><i> Conferences: </i>
-</p>
-<ul>
-<li><p><i>Apr 2023</i>: <b>&lsquo;&lsquo;<a href="https://cfc2023.iacm.info/event/contribution/ed7e501e-33f8-11ed-8e5b-000c29ddfc0c" target=&ldquo;blank&rdquo;>A Reduced-Order Model for Multiphase Simulation of Transient Inert Multicomponent Sprays in the Context of Compression Ignition Engines</a>&rsquo;&rsquo;</b>under Avijit Saha, Dr. Ing- Abhishek Deshmukh
-</p>
-</li>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#">Rishi Dhar</a>
+    <nav class="ui" aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#code">Code</a>
+      <a href="#skills">Skills</a>
+      <a href="#updates">Updates</a>
+      <a href="#path">Path</a>
+      <a href="Rishi_Dhar_CV.pdf">CV</a>
+    </nav>
+  </header>
 
-<h2>Detailed Bio </h2>
+  <div class="hero">
+    <h1>I simulate liquids that forget their structure.</h1>
+    <p class="lede">PhD researcher running direct numerical simulations of thixotropic jet atomization — fluids whose viscosity depends on their shear history — on GPU supercomputers at HLRS.</p>
+    <div class="who"><img src="rishi_pic.JPG" alt="Portrait of Rishi Dhar" width="64" height="64"><p class="where">Rishi Dhar<br><a href="https://www.itlr.uni-stuttgart.de/en/">Institute of Aerospace Thermodynamics (ITLR)</a>, University of Stuttgart</p></div>
+  </div>
 
-<p><b>
-    I am currently pursuing Masters at RWTH Aachen in Computer Aided Conception in Mechanical Engineering. With this course, I wish to cement my fundamentals of Fluid Dynamics. Among the curriculum, CFD is taught under the AIA of RWTH which has been the main motivator for choosing the course and University
-    I have been a working professional before, but rooted myself towards learning Continuum Mechanics and Fluid Dynamics. While pursuing Bachelors from NIT Bhopal, I have worked on Solid Body Designing at Mach Speeds and conducted experiments on Combustion Optimization in IC Engines. With my interest in Fluid Gas Interaction, I am studying Multiphase Flows, and Turbulence Modelling at RWTH Aachen
-    I have deep interests in Reinforcement Learning and using MATLAB has been a great experimenting base for me. I have used ANSYS, Hypermesh and CONVERGE for multiple projects. I have Industry experience for using CATIA and Solidworks, while working for Crompton Greaves and Hero Moto Corp. I code in Python for my interest in ML and recently started learning Java as a part of my curriculum.
-    I am still ambitious for Research with a Wide angle approach with my core interest areas being Computational Mechanics and Multiphase Flows.
-</b></p>
+  <figure class="jet" aria-label="Animated illustration of a liquid jet breaking up, coloured by structure parameter lambda">
+    <canvas id="jet"></canvas>
+    <figcaption>
+      <span>Illustrative jet, coloured by the Moore structure parameter λ along x/D. Structure breaks down near the nozzle, then partially recovers downstream.</span>
+      <span class="scale">λ<sub>min</sub> <i></i> λ = 1</span>
+    </figcaption>
+  </figure>
 </div>
-</td>
-</tr>
-</table>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585010344671187"
-     crossorigin="anonymous"></script>
+
+<main class="wrap">
+
+  <!-- ===== RESEARCH ===== -->
+  <section id="research">
+    <div class="sec-head">
+      <h2>Research</h2>
+      <p>My PhD covers the ITLR part of a DFG project with Markus Klein's group (UniBw München) on DNS and LES of primary and secondary breakup of shear-thinning and thixotropic jets.</p>
+    </div>
+
+    <article class="primary">
+      <h3>Spatial regime structure in direct numerical simulation of thixotropic liquid jets</h3>
+      <div class="meta">Journal paper, in preparation · with K. Schulte and B. Weigand</div>
+      <p>A turbulent jet of a Moore-model fluid doesn't sit in one rheological regime — it passes through several, in space. I decompose the jet into a structure-destroying zone, a decelerating zone and a recovery zone, and track where the boundaries between them sit as the mutation number Mu and the destruction parameter β vary.</p>
+      <p>The goal: pin down regime transition boundaries well enough that future work can study each regime on its own, without a full jet DNS.</p>
+      <div class="tags"><span>FS3D</span><span>VOF</span><span>Moore model</span><span>HLRS Hawk / Hunter</span></div>
+    </article>
+
+    <ul class="plist" id="projects"></ul>
+  </section>
+
+  <!-- ===== CODE ===== -->
+  <section id="code">
+    <div class="sec-head">
+      <h2>Code &amp; engineering</h2>
+      <p>The software side of the research, plus engineering work outside it. Links go to repositories where the code is public.</p>
+    </div>
+    <ul class="plist" id="code-list"></ul>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <p>Grouped by what I use them for. Items marked “learning” are part of my current move towards GPU engineering.</p>
+    </div>
+    <div class="skills">
+      <div>
+        <h3>CFD &amp; numerics</h3>
+        <ul>
+          <li>Direct numerical simulation</li>
+          <li>Volume-of-fluid multiphase flow</li>
+          <li>Non-Newtonian &amp; thixotropic rheology</li>
+          <li>LES / RANS for jet propulsion</li>
+          <li>Spray &amp; combustion solvers</li>
+          <li>Multigrid pressure solvers</li>
+          <li>Lattice Boltzmann (GPU)</li>
+          <li>Grid convergence (GCI) &amp; resolution diagnostics</li>
+        </ul>
+      </div>
+      <div>
+        <h3>HPC &amp; GPU</h3>
+        <ul>
+          <li>Fortran, MPI</li>
+          <li>OpenMP target offloading <small>AMD MI300A</small></li>
+          <li>HLRS Hawk &amp; Hunter, PBS</li>
+          <li>Parallel I/O with HDF5 / XDMF</li>
+          <li>Modern C++ <small>learning</small></li>
+          <li>CUDA <small>learning</small></li>
+          <li>Kokkos, AMReX <small>learning</small></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tools &amp; languages</h3>
+        <ul>
+          <li>Python — NumPy, h5py, SciPy</li>
+          <li>ParaView / pvpython / pvbatch</li>
+          <li>Rust, Go</li>
+          <li>Kubernetes, Helm, skopeo</li>
+          <li>LaTeX, TikZ / pgfplots</li>
+          <li>Git, Linux, Jupyter</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PUBLICATIONS ===== -->
+  <section id="publications">
+    <div class="sec-head">
+      <h2>Publications</h2>
+      <p>Papers, preprints and talks. Full list on <a href="https://scholar.google.com/citations?user=Dbk4V_cAAAAJ&amp;hl=en">Google Scholar</a>.</p>
+    </div>
+    <ul class="xp">
+      <li><div class="org">2026<span>arXiv preprint</span></div>
+          <p><a href="https://arxiv.org/abs/2605.30082">The Role of Interfacial Tension in Direct Numerical Simulations of Drop-Film Interaction for Immiscible Fluids</a>. R. Dhar, D. Gösele, P. Saumet, B. Weigand, K. Schulte. arXiv:2605.30082.</p></li>
+      <li><div class="org">In preparation<span>Journal paper</span></div>
+          <p>R. Dhar, K. Schulte, B. Weigand. Spatial regime structure in direct numerical simulation of thixotropic liquid jets.</p></li>
+      <li><div class="org">2024<span>DIPSI 2024</span></div>
+          <p>Investigation of droplet-pool phenomena and droplet-film interaction for immiscible fluids. R. Dhar, K. Schulte.</p></li>
+      <li><div class="org">2024<span>ITV, RWTH Aachen</span></div>
+          <p>CFD DEM coupling for battery slurry. R. Dhar.</p></li>
+      <li><div class="org">2023<span>IACM CFC 2023, talk</span></div>
+          <p><a href="https://cfc2023.iacm.info/event/contribution/ed7e501e-33f8-11ed-8e5b-000c29ddfc0c">A reduced-order model for multiphase simulation of transient inert multicomponent sprays in the context of compression ignition engines</a>. A. Saha, M.S. Deshmukh, A.Y., R. Dhar, et al.</p></li>
+      <li><div class="org">2016<span>Imperial Int. J. of Eco-friendly Technologies 1 (1), 8</span></div>
+          <p>A study on the design procedure: geometry, ability to endure and perform and sustainance. R. Dhar, A. Gupta, M. Shukla, A. Sharma, A. Porwal, R. Biswal.</p></li>
+      <li><div class="org">Undated<span>Design</span></div>
+          <p>Design optimization of a nose profile for a canard configuration missile. K. Akojwar, R. Dhar.</p></li>
+    </ul>
+  </section>
+
+  <!-- ===== UPDATES ===== -->
+  <section id="updates">
+    <div class="sec-head">
+      <h2>Updates</h2>
+      <p>What I'm working on, newest first.</p>
+    </div>
+    <ol class="log" id="log"></ol>
+  </section>
+
+  <!-- ===== PATH ===== -->
+  <section id="path">
+    <div class="sec-head">
+      <h2>Path</h2>
+      <p>From a refinery in Surat to supercomputers in Stuttgart.</p>
+    </div>
+    <ul class="xp">
+      <li><div class="org">Since Feb 2024<span>ITLR, University of Stuttgart</span></div>
+          <p><strong>Doctoral researcher</strong> with Prof. Bernhard Weigand and Dr. Kathrin Schulte. DNS of thixotropic jet atomization with the in-house VOF solver FS3D; GPU porting and post-processing pipelines on HLRS Hawk and Hunter.</p></li>
+      <li><div class="org">Mar – Nov 2023<span>Siemens, Munich</span></div>
+          <p><strong>Intern, then master's thesis</strong>, advised by Theresa Pasch. <a href="praktikum_bericht.pdf">Internship report</a></p></li>
+      <li><div class="org">2022 – 2023<span>RWTH Aachen University</span></div>
+          <p><strong>Student researcher</strong> at the Institute for Combustion Technology (ITV), on a reduced-order spray solver for compression-ignition engines, and at the Institute of Jet Propulsion and Turbomachinery (IST), on LES/RANS of jet propulsion flows.</p></li>
+      <li><div class="org">2021 – 2023<span>RWTH Aachen University</span></div>
+          <p><strong>M.Sc. Computer Aided Conception in Mechanical Engineering</strong>, focused on CFD, multiphase flow and turbulence modelling.</p></li>
+      <li><div class="org">2017 – 2021<span>Bharat Petroleum (BPCL), Surat</span></div>
+          <p><strong>Management Trainee to Assistant Manager.</strong></p></li>
+      <li><div class="org">2013 – 2017<span>MANIT Bhopal</span></div>
+          <p><strong>B.Tech. Mechanical Engineering</strong>, advised by Prof. Rajesh Gupta. <a href="major_project.pdf">Thesis</a></p></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="wrap" id="contact">
+  <h2 id="contact-h" style="margin-bottom:18px">Contact</h2>
+  <div class="contact ui">
+    <a href="mailto:rishi.dhar@itlr.uni-stuttgart.de">rishi.dhar@itlr.uni-stuttgart.de</a>
+    <a href="mailto:rishi.dhar@rwth-aachen.de">rishi.dhar@rwth-aachen.de</a>
+    <a href="https://github.com/Rishi15">GitHub</a>
+    <a href="https://www.linkedin.com/in/rishi-dhar-0811/">LinkedIn</a>
+    <a href="https://scholar.google.com/citations?user=Dbk4V_cAAAAJ&amp;hl=en">Google Scholar</a>
+    <a href="Rishi_Dhar_CV.pdf">CV (PDF)</a>
+  </div>
+  <small>Last updated <span id="last-updated"></span>.</small>
+</footer>
+
+<script>
+/* =====================================================================
+   CONTENT — edit these arrays to update the site. No build step needed.
+   status: "active" | "planned" | "done"
+   ===================================================================== */
+const PROJECTS = [
+  { title: "Thixotropy in drop–drop collisions",
+    status: "active",
+    text: "Does thixotropy shift the classical Newtonian B–We collision chart? Starting with head-on collisions near regime transitions to test the coalescence boundary; first step into the project's secondary-breakup work package.",
+    tags: ["FS3D", "secondary breakup"] },
+  { title: "Physically consistent thixotropic inflow",
+    status: "done",
+    text: "Turbulent pipe-flow inlet profiles for structure-carrying fluids: Lauffer's mixing-length closure extended to power-law, Carreau–Yasuda and Moore fluids, validated against pipe-flow DNS and friction-factor correlations.",
+    tags: ["Python", "rheology", "validation"] },
+  { title: "Turbulence cascade in thixotropic jets",
+    status: "planned",
+    text: "A second paper on how structural breakdown interacts with the energy cascade near the nozzle, gated on quantifying how far the synthetic inflow turbulence needs to adapt.",
+    tags: ["DNS", "turbulence"] },
+  { title: "Validating the Moore model against real fluids",
+    status: "planned",
+    text: "Fit Moore-model parameters to measured rheology of several real gelled fluids and compare simulated jet behaviour to atomization experiments.",
+    tags: ["model validation", "experiments"] },
+];
+
+const CODE = [
+  { title: "GPU offloading of FS3D",
+    status: "active",
+    text: "Porting the FS3D VOF solver to AMD MI300A APUs on HLRS Hunter with OpenMP target directives; benchmarking interface advection against the PARIS solver.",
+    tags: ["Fortran", "OpenMP target", "MI300A"], link: "" },
+  { title: "Jet DNS post-processing pipeline",
+    status: "active",
+    text: "Grid-convergence (GCI), Kolmogorov-resolution and statistical-convergence diagnostics for multi-terabyte HDF5 output, with phase-conditioned ParaView batch visualisation and TikZ-ready exports.",
+    tags: ["Python", "h5py", "ParaView"], link: "" },
+  { title: "Rust image transfer for helm-dtn",
+    status: "done",
+    text: "A Rust sender and receiver speaking AAP2 over µD3TN to move container images across delay-tolerant links, with skopeo pushing into Harbor on the far side.",
+    tags: ["Rust", "Go", "Kubernetes"], link: "" },
+  { title: "Moore model explorer",
+    status: "done",
+    text: "Browser dashboard for exploring the equilibrium structure parameter along a jet as β, Mu and shear-rate assumptions change.",
+    tags: ["JavaScript", "rheology"], link: "" },
+];
+
+const UPDATES = [
+  { date: "2026-10", text: "Started a new study on thixotropic drop–drop collisions." },
+  { date: "2026-10", text: "Planning the next project phase: temperature-dependent viscosity versus real-fluid validation of the Moore model." },
+  { date: "2026-09", text: "Reframed the jet paper around regime transition boundaries; Results and Discussion drafted." },
+  { date: "2026-09", text: "Moved post-processing to the HLRS 2026.1 software stack." },
+  { date: "2026-08", text: "Finished the Rust-native AAP2 image channel for helm-dtn." },
+  { date: "2026-08", text: "Started a structured plan towards GPU engineering: modern C++, CUDA and open-source HPC contributions." },
+  { date: "2026-07", text: "Delivered validated inflow-profile solvers for shear-thinning and Moore-model fluids." },
+  { date: "2026-07", text: "FS3D running with OpenMP target offloading on Hunter's MI300A nodes." },
+];
+const LAST_UPDATED = "October 2026";
+
+/* ---------- render ---------- */
+const STATUS = { active: ["In progress", "var(--lamh)"], planned: ["Planned", "var(--lam1)"], done: ["Done", "var(--lam0)"] };
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function renderList(el, items){
+  el.innerHTML = items.map(p => {
+    const [label, col] = STATUS[p.status] || ["", "var(--muted)"];
+    const title = p.link ? `<a href="${esc(p.link)}">${esc(p.title)}</a>` : esc(p.title);
+    return `<li><span class="status" style="--c:${col}">${label}</span>
+      <h3>${title}</h3><p>${esc(p.text)}</p>
+      <div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div></li>`;
+  }).join("");
+}
+renderList(document.getElementById("projects"), PROJECTS);
+renderList(document.getElementById("code-list"), CODE);
+
+const fmt = d => { const [y,m] = d.split("-"); return new Date(+y, +m-1).toLocaleString("en-GB",{month:"short", year:"numeric"}); };
+const log = document.getElementById("log");
+const SHOW = 5;
+function renderLog(all){
+  const items = all ? UPDATES : UPDATES.slice(0, SHOW);
+  log.innerHTML = items.map(u => `<li><time datetime="${u.date}">${fmt(u.date)}</time><div class="body"><p>${esc(u.text)}</p></div></li>`).join("")
+    + (UPDATES.length > SHOW && !all ? `<li><span></span><div class="more"><button class="ui" id="more">Show all ${UPDATES.length} updates</button></div></li>` : "");
+  const b = document.getElementById("more"); if (b) b.onclick = () => renderLog(true);
+}
+renderLog(false);
+document.getElementById("last-updated").textContent = LAST_UPDATED;
+
+/* =====================================================================
+   Hero: a liquid jet breaking up, coloured by structure parameter λ
+   ===================================================================== */
+(() => {
+  const cv = document.getElementById("jet"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const XMAX = 4;                         // domain shown, in x/D
+  let W, H, dpr, drops = [], t = 0, raf;
+
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const hex = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+  let C1, Ch, C0;
+  const readColors = () => { C1 = hex(css("--lam1")); Ch = hex(css("--lamh")); C0 = hex(css("--lam0")); };
+  const mix = (a,b,f) => a.map((v,i) => Math.round(v + (b[i]-v)*f));
+  const lamColor = l0 => { const l = Math.max(0, (l0 - .42) / .58); const c = l > .5 ? mix(Ch, C1, (l-.5)/.5) : mix(C0, Ch, l/.5); return `rgb(${c})`; };
+
+  // λ along the jet: fast breakdown, minimum near x/D ≈ 1.15, partial recovery
+  const smooth = (a,b,x) => { const u = Math.min(1, Math.max(0,(x-a)/(b-a))); return u*u*(3-2*u); };
+  const lam = xd => 1 - .58 * (xd < 1.15 ? smooth(0, 1.15, xd) : .4 + .6*Math.exp(-(xd-1.15)/.8));
+
+  function size(){
+    dpr = Math.min(2, devicePixelRatio || 1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    readColors();
+  }
+  const R0 = () => Math.min(26, H*.11);
+  const breakX = () => W*.62;              // intact-core length
+  const xd = x => x / W * XMAX;
+
+  function radius(x, tt){
+    const g = Math.pow(x / breakX(), 1.6);            // disturbance growth
+    const wave = Math.sin(x*.045 - tt*3.2) * .55 + Math.sin(x*.11 - tt*5.1 + 1.3) * .3;
+    let r = R0() * (1 + g * wave * .9);
+    if (x > breakX()*.92) r *= Math.max(0, 1 - (x - breakX()*.92) / (breakX()*.08));
+    return Math.max(0, r);
+  }
+
+  function spawn(tt){
+    const xb = breakX();
+    const n = reduce ? 0 : 2;
+    for (let i = 0; i < n; i++){
+      if (Math.random() < .55){
+        const fromTip = Math.random() < .6;
+        const x = fromTip ? xb*(.9 + Math.random()*.1) : xb*(.55 + Math.random()*.4);
+        const side = Math.random() < .5 ? -1 : 1;
+        const r0 = radius(x, tt);
+        drops.push({ x, y: H/2 + (fromTip ? (Math.random()-.5)*R0() : side*r0*.9),
+          vx: 70 + Math.random()*60, vy: (fromTip ? (Math.random()-.5)*14 : side*(8 + Math.random()*18)),
+          r: fromTip ? 2.5 + Math.random()*R0()*.35 : 1 + Math.random()*3.2 });
+      }
+    }
+  }
+
+  function axis(){
+    ctx.fillStyle = css("--muted"); ctx.strokeStyle = css("--rule");
+    ctx.font = '500 11px "Schibsted Grotesk", sans-serif'; ctx.textAlign = "center";
+    const y = H - 18;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    for (let k = 0; k <= XMAX; k++){
+      const x = k / XMAX * W;
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y+4); ctx.stroke();
+      ctx.fillText(k === 0 ? "" : `${k}D`, Math.min(W-12, x), y+15);
+    }
+  }
+
+  function frame(dt){
+    t += dt;
+    ctx.clearRect(0,0,W,H);
+    const cy = H/2 - 6, xb = breakX();
+
+    // colour gradient along x
+    const grad = ctx.createLinearGradient(0,0,W,0);
+    for (let i = 0; i <= 20; i++){ const f = i/20; grad.addColorStop(f, lamColor(lam(f*XMAX))); }
+
+    // intact liquid core
+    ctx.beginPath(); ctx.moveTo(0, cy - radius(0,t));
+    for (let x = 0; x <= xb; x += 3) ctx.lineTo(x, cy - radius(x,t));
+    for (let x = xb; x >= 0; x -= 3) ctx.lineTo(x, cy + radius(x, t + .37));
+    ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+
+    // droplets
+    if (!reduce) spawn(t);
+    drops = drops.filter(d => d.x < W + 10);
+    for (const d of drops){
+      d.x += d.vx*dt; d.y += d.vy*dt; d.vy *= .995;
+      ctx.beginPath(); ctx.arc(d.x, d.y - 6, d.r, 0, Math.PI*2);
+      ctx.fillStyle = lamColor(lam(xd(d.x))); ctx.fill();
+    }
+    axis();
+  }
+
+  let last = performance.now();
+  function loop(now){
+    frame(Math.min(.05, (now - last)/1000)); last = now;
+    raf = requestAnimationFrame(loop);
+  }
+  function staticFrame(){
+    // seed a believable spray for users who prefer no motion
+    drops = [];
+    for (let i = 0; i < 70; i++){
+      const x = breakX()*(.9 + Math.random()*.1) + Math.random()*(W - breakX());
+      drops.push({ x, y: H/2 + (Math.random()-.5)*R0()*(1 + (x-breakX())/W*6), vx:0, vy:0, r: 1 + Math.random()*R0()*.3 });
+    }
+    frame(0);
+  }
+
+  size();
+  addEventListener("resize", () => { size(); if (reduce) staticFrame(); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { readColors(); if (reduce) staticFrame(); });
+  if (reduce) staticFrame();
+  else {
+    // pause when off-screen
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting){ last = performance.now(); raf = requestAnimationFrame(loop); }
+      else cancelAnimationFrame(raf);
+    }).observe(cv);
+  }
+})();
+</script>
 </body>
 </html>

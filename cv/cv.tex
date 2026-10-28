@@ -1,0 +1,116 @@
+% =====================================================================
+% CV of Rishi Dhar. Edit the content below, then run ./build.sh
+% Each entry is one macro call:
+%   \entry{Title}{Organisation, place}{Dates}{
+%     \item bullet ...
+%   }
+% Use \entry{...}{...}{...}{} for an entry without bullets.
+% =====================================================================
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.8cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\definecolor{accent}{HTML}{24356B}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[\vspace{-0.6em}\color{accent}\rule{\linewidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{1.1em}{0.6em}
+\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt,parsep=0pt}
+
+% \entry{title}{organisation}{dates}{bullets}
+\newcommand{\entry}[4]{%
+  \par\vspace{0.5em}\noindent
+  \textbf{#1}\hfill\textcolor{gray}{#3}\\
+  \textit{#2}%
+  \ifx\relax#4\relax\else\begin{itemize}#4\end{itemize}\fi
+}
+% \skillrow{label}{items}
+\newcommand{\skillrow}[2]{\noindent\hangindent=3.6cm\hangafter=1\makebox[3.6cm][l]{\textbf{#1}}#2\par\vspace{2pt}}
+
+\begin{document}
+
+% ---------- header ----------
+{\Huge\bfseries Rishi Dhar}\\[3pt]
+{\large Doctoral researcher, Institute of Aerospace Thermodynamics (ITLR), University of Stuttgart}\\[4pt]
+\href{mailto:rishi.dhar@itlr.uni-stuttgart.de}{rishi.dhar@itlr.uni-stuttgart.de} \,|\,
+\href{https://github.com/Rishi15}{GitHub} \,|\,
+\href{https://www.linkedin.com/in/rishi-dhar-0811/}{LinkedIn} \,|\,
+\href{https://scholar.google.com/citations?user=Dbk4V_cAAAAJ&hl=en}{Google Scholar} \,|\,
+\href{https://rishi15.github.io}{rishi15.github.io}
+
+\section{Profile}
+PhD researcher running direct numerical simulations of thixotropic jet atomization on GPU
+supercomputers at HLRS, within a DFG project on primary and secondary breakup of shear-thinning
+and thixotropic jets. Background in multiphase CFD, spray and combustion modelling, and HPC;
+currently moving towards GPU engineering (modern C++, CUDA, open-source HPC).
+
+\section{Experience}
+\entry{Doctoral Researcher}{ITLR, University of Stuttgart}{Feb 2024 -- present}{
+  \item DNS of thixotropic liquid jet atomization with the in-house VOF solver FS3D; supervised by Prof.\ Bernhard Weigand and Dr.\ Kathrin Schulte.
+  \item GPU porting of FS3D with OpenMP target offloading on AMD MI300A (HLRS Hunter); post-processing pipelines for multi-terabyte HDF5 output on HLRS Hawk and Hunter.
+  \item Validated turbulent inflow-profile solvers for shear-thinning and Moore-model fluids.
+}
+\entry{Intern, then Master's Thesis}{Siemens, Munich}{Mar 2023 -- Nov 2023}{
+  \item Nano-scaled model of cathode slurry components (PVDF, carbon black, NMC) with validation against experiments.
+  \item Viscosity-versus-shear analysis of non-Newtonian fluids using CFD coupled with the discrete element method (DEM); battery slurry mixing models in STAR-CCM+, NX and OpenFOAM; thermal-runaway simulation of Li-ion NMC cathodes.
+}
+\entry{Student Researcher}{Institute for Combustion Technology (ITV), RWTH Aachen}{2022 -- 2023}{
+  \item Fortran spray simulations on the RWTH cluster: reduced-order models for multi-fuel, multiphase injection, validated with ECN and in-house experimental data.
+}
+\entry{Student Researcher}{Institute of Jet Propulsion and Turbomachinery (IST), RWTH Aachen}{Dec 2022 -- Apr 2023}{
+  \item LES of compressor blade cascades with periodic boundary conditions (TRACE) in coordination with MTU; post-processing in Tecplot/PyTecplot; data filtering and validation in Python.
+}
+\entry{Management Trainee to Assistant Manager (Design and Thermal Engineer)}{Bharat Petroleum (BPCL), Surat / Vadodara}{2017 -- 2021}{
+  \item Integrated existing automation and safety PLC systems; managed a terminal expansion project (600 Cr INR capex).
+  \item Thermal validation simulations for the flameproof rating of rubber safety nets on hydrocarbon sensors and blow-valves; DFM/DFA of solenoid valves and piezo-electric pipeline sensors.
+}
+\entry{Summer Intern}{Hero MotoCorp, Gurgaon}{May -- Jul 2016}{
+  \item Designed and built an engine test bench, enabling 100\% quality certification of engine exports.
+}
+
+\section{Education}
+\entry{M.Sc.\ Computer Aided Conception in Mechanical Engineering}{RWTH Aachen University}{2021 -- 2023}{
+  \item Focus on CFD, multiphase flow and turbulence modelling. Grade: 2.0.
+}
+\entry{B.Tech.\ Mechanical Engineering}{MANIT Bhopal}{2013 -- 2017}{
+  \item Top 10\% of class. Grade: 1.9. Thesis advised by Prof.\ Rajesh Gupta.
+}
+
+\section{Publications and Talks}
+\entry{The Role of Interfacial Tension in Direct Numerical Simulations of Drop-Film Interaction for Immiscible Fluids}{R.\ Dhar, D.\ G\"osele, P.\ Saumet, B.\ Weigand, K.\ Schulte. arXiv:2605.30082}{2026}{}
+\entry{Spatial regime structure in direct numerical simulation of thixotropic liquid jets}{R.\ Dhar, K.\ Schulte, B.\ Weigand. Journal paper}{in preparation}{}
+\entry{Investigation of Droplet-Pool Phenomena and Droplet-Film Interaction for Immiscible Fluids}{R.\ Dhar, K.\ Schulte. DIPSI 2024}{2024}{}
+\entry{CFD DEM Coupling for Battery Slurry}{R.\ Dhar. ITV, RWTH Aachen}{2024}{}
+\entry{A Reduced-Order Model for Multiphase Simulation of Transient Inert Multicomponent Sprays in the Context of Compression Ignition Engines}{A.\ Saha, M.S.\ Deshmukh, A.Y., R.\ Dhar, et al.\ IACM CFC 2023, talk}{2023}{}
+\entry{A Study on the Design Procedure: Geometry, Ability to Endure and Perform and Sustainance}{R.\ Dhar, A.\ Gupta, M.\ Shukla, A.\ Sharma, A.\ Porwal, R.\ Biswal. Imperial Int.\ J.\ of Eco-friendly Technologies 1(1), 8}{2016}{}
+\entry{Design optimization of a nose profile for a canard configuration missile}{K.\ Akojwar, R.\ Dhar}{}{}
+
+\section{Selected Projects}
+\entry{GPU offloading of FS3D}{Fortran, OpenMP target, MI300A}{2026}{
+  \item Porting the VOF solver to AMD MI300A APUs; benchmarking interface advection against PARIS.
+}
+\entry{Jet DNS post-processing pipeline}{Python, h5py, ParaView}{2026}{
+  \item Grid-convergence (GCI), Kolmogorov-resolution and statistical-convergence diagnostics; phase-conditioned ParaView batch visualisation.
+}
+\entry{Rust image transfer for helm-dtn}{Rust, Go, Kubernetes}{2026}{
+  \item AAP2 sender/receiver over \textmu D3TN for moving container images across delay-tolerant links.
+}
+\entry{Design Lead, Electric Solar Vehicle Championship}{MANIT Bhopal}{2015 -- 2016}{
+  \item Led a 5-member team; designed a low-drag chassis and roll cage. Won the Best Design Award among 150+ universities.
+}
+
+\section{Skills}
+\skillrow{CFD and numerics}{DNS, volume-of-fluid multiphase flow, non-Newtonian and thixotropic rheology, LES/RANS, spray and combustion solvers, multigrid, Lattice Boltzmann}
+\skillrow{HPC and GPU}{Fortran, MPI, OpenMP target offloading, HLRS Hawk/Hunter (PBS), HDF5/XDMF; learning: modern C++, CUDA, Kokkos, AMReX}
+\skillrow{Tools}{Python (NumPy, h5py, SciPy), ParaView, Tecplot, STAR-CCM+, OpenFOAM, Rust, Go, Kubernetes, LaTeX/TikZ, Git, Linux}
+\skillrow{Languages}{English, Hindi, German}
+
+\end{document}
