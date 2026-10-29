@@ -66,6 +66,7 @@
   .hero .where{font:500 .95rem/1.4 "Schibsted Grotesk",sans-serif; color:var(--muted); margin:0}
   .hero .where a{color:inherit}
 
+  /* ===== JET ANIMATION: styles (canvas size, caption, λ colour bar) ===== */
   .jet{margin:44px 0 0; position:relative}
   .jet canvas{display:block; width:100%; height:240px}
   .jet figcaption{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
@@ -73,6 +74,7 @@
   .scale{display:flex; align-items:center; gap:8px}
   .scale i{display:inline-block; width:120px; height:8px; border-radius:4px;
     background:linear-gradient(90deg,var(--lam0),var(--lamh),var(--lam1))}
+  /* ===== JET ANIMATION: styles end ===== */
 
   /* ---------- sections ---------- */
   section{padding:88px 0 0}
@@ -131,13 +133,39 @@
   footer.wrap{padding-top:96px; padding-bottom:48px}
   .contact{display:flex; flex-wrap:wrap; gap:12px 28px; font:500 1.05rem "Schibsted Grotesk",sans-serif}
   footer small{display:block; color:var(--muted); margin-top:28px; font:400 .82rem "Schibsted Grotesk",sans-serif}
+
+  /* ===== BUSINESS CARD: styles ===== */
+  a.cardlink{color:inherit; text-decoration:none; cursor:pointer}
+  a.cardlink:hover .nm{text-decoration:underline; text-underline-offset:3px}
+  .who a.cardlink img{display:block}
+  dialog#card{border:0; padding:0; width:min(440px, calc(100vw - 32px)); border-radius:10px; outline:none;
+    background:var(--paper); color:var(--ink); box-shadow:0 24px 60px rgba(8,14,22,.35); overflow:hidden}
+  dialog#card::backdrop{background:rgba(8,14,22,.55)}
+  .bc{display:grid; grid-template-columns:8px 1fr}
+  .bc-strip{background:linear-gradient(180deg,var(--lam1),var(--lamh),var(--lam0))}
+  .bc-body{padding:24px 24px 20px}
+  .bc-top{display:flex; gap:16px; align-items:center; margin-bottom:18px}
+  .bc-top img{width:72px; height:72px; border-radius:50%; object-fit:cover; background:var(--tag); flex:none; font-size:0; overflow:hidden}
+  .bc-top h2{font-size:1.45rem; margin:0; line-height:1.15}
+  .bc-top p{margin:4px 0 0; font:400 .9rem/1.35 "Schibsted Grotesk",sans-serif; color:var(--muted)}
+  .bc dl{margin:0; display:grid; grid-template-columns:76px 1fr; row-gap:8px; font:400 .95rem/1.4 "Schibsted Grotesk",sans-serif}
+  .bc dt{color:var(--muted)}
+  .bc dd{margin:0; overflow-wrap:anywhere}
+  .bc-foot{display:flex; gap:18px; align-items:flex-end; justify-content:space-between; margin-top:20px; padding-top:18px; border-top:1px solid var(--rule)}
+  .bc-qr{width:132px; height:132px; background:#fff; padding:6px; border-radius:4px}
+  .bc-qr svg{display:block; width:100%; height:100%}
+  .bc-qr:empty{display:none}
+  .bc-qr-note{font:400 .78rem/1.35 "Schibsted Grotesk",sans-serif; color:var(--muted); margin:6px 0 0; max-width:132px}
+  .bc-actions{display:flex; flex-direction:column; gap:8px; margin-left:auto}
+  button.ui.solid{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  /* ===== BUSINESS CARD: styles end ===== */
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <header class="top">
-    <a class="mark" href="#">Rishi Dhar</a>
+    <a class="mark cardlink" href="#card" aria-haspopup="dialog">Rishi Dhar</a>
     <nav class="ui" aria-label="Sections">
       <a href="#research">Research</a>
       <a href="#code">Code</a>
@@ -150,9 +178,10 @@
   <div class="hero">
     <h1>I simulate liquids that forget their structure.</h1>
     <p class="lede">PhD researcher running direct numerical simulations of thixotropic jet atomization — fluids whose viscosity depends on their shear history — on GPU supercomputers at HLRS.</p>
-    <div class="who"><img src="rishi_pic.JPG" alt="Portrait of Rishi Dhar" width="64" height="64"><p class="where">Rishi Dhar<br><a href="https://www.itlr.uni-stuttgart.de/en/">Institute of Aerospace Thermodynamics (ITLR)</a>, University of Stuttgart</p></div>
+    <div class="who"><a class="cardlink" href="#card" aria-haspopup="dialog" aria-label="Open contact card for Rishi Dhar"><img src="rishi_pic.JPG" alt="Portrait of Rishi Dhar" width="64" height="64"></a><p class="where"><a class="cardlink" href="#card" aria-haspopup="dialog"><span class="nm">Rishi Dhar</span></a><br><a href="https://www.itlr.uni-stuttgart.de/en/">Institute of Aerospace Thermodynamics (ITLR)</a>, University of Stuttgart</p></div>
   </div>
 
+  <!-- ===== JET ANIMATION: markup (the canvas the jet script draws into) ===== -->
   <figure class="jet" aria-label="Animated illustration of a liquid jet breaking up, coloured by structure parameter lambda">
     <canvas id="jet"></canvas>
     <figcaption>
@@ -160,6 +189,7 @@
       <span class="scale">λ<sub>min</sub> <i></i> λ = 1</span>
     </figcaption>
   </figure>
+  <!-- ===== JET ANIMATION: markup end ===== -->
 </div>
 
 <main class="wrap">
@@ -288,6 +318,28 @@
   <small>Last updated <span id="last-updated"></span>.</small>
 </footer>
 
+<!-- ===== BUSINESS CARD: markup (opens from the name or photo, or via yoursite/#card) ===== -->
+<dialog id="card" aria-labelledby="bc-name">
+  <div class="bc">
+    <div class="bc-strip" aria-hidden="true"></div>
+    <div class="bc-body">
+      <div class="bc-top">
+        <img src="rishi_pic.JPG" alt="" width="72" height="72">
+        <div><h2 id="bc-name"></h2><p id="bc-role"></p></div>
+      </div>
+      <dl id="bc-rows"></dl>
+      <div class="bc-foot">
+        <div><div class="bc-qr" id="bc-qr"></div><p class="bc-qr-note" id="bc-qr-note" hidden>Scan to save this contact</p></div>
+        <div class="bc-actions">
+          <button class="ui solid" id="bc-save">Save contact</button>
+          <button class="ui" id="bc-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+<!-- ===== BUSINESS CARD: markup end ===== -->
+
 <script>
 /* =====================================================================
    CONTENT — edit these arrays to update the site. No build step needed.
@@ -359,9 +411,10 @@ renderList(document.getElementById("projects"), PROJECTS);
 renderList(document.getElementById("code-list"), CODE);
 
 const fmt = d => { const [y,m] = d.split("-"); return new Date(+y, +m-1).toLocaleString("en-GB",{month:"short", year:"numeric"}); };
-const log = document.getElementById("log");
+const log = document.getElementById("log");   // null if the Updates section is removed
 const SHOW = 5;
 function renderLog(all){
+  if (!log) return;
   const items = all ? UPDATES : UPDATES.slice(0, SHOW);
   log.innerHTML = items.map(u => `<li><time datetime="${u.date}">${fmt(u.date)}</time><div class="body"><p>${esc(u.text)}</p></div></li>`).join("")
     + (UPDATES.length > SHOW && !all ? `<li><span></span><div class="more"><button class="ui" id="more">Show all ${UPDATES.length} updates</button></div></li>` : "");
@@ -370,8 +423,75 @@ function renderLog(all){
 renderLog(false);
 document.getElementById("last-updated").textContent = LAST_UPDATED;
 
+</script>
+
+<!-- ===== BUSINESS CARD: script ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* Edit your card here. Leave phone as "" to hide it; use international format, e.g. "+49 711 685 00000". */
+const CONTACT = {
+  name: "Rishi Dhar",
+  title: "Doctoral Researcher",
+  org: "Institute of Aerospace Thermodynamics (ITLR), University of Stuttgart",
+  phone: "",
+  emails: ["rishi.dhar@itlr.uni-stuttgart.de", "rishi.dhar@rwth-aachen.de"],
+  linkedin: "https://www.linkedin.com/in/rishi-dhar-0811/",
+  github: "https://github.com/Rishi15",
+  site: "https://rishi15.github.io",
+};
+(() => {
+  const C = CONTACT, dlg = document.getElementById("card");
+  const e = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const short = u => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+  const tel = C.phone.replace(/[^+\d]/g, "");
+  document.getElementById("bc-name").textContent = C.name;
+  document.getElementById("bc-role").textContent = `${C.title}, ${C.org}`;
+  const rows = [];
+  if (tel) rows.push(["Phone", `<a href="tel:${tel}">${e(C.phone)}</a>`]);
+  C.emails.forEach((m, i) => rows.push([i ? "" : "Email", `<a href="mailto:${e(m)}">${e(m)}</a>`]));
+  rows.push(["LinkedIn", `<a href="${e(C.linkedin)}">${e(short(C.linkedin))}</a>`]);
+  rows.push(["GitHub", `<a href="${e(C.github)}">${e(short(C.github))}</a>`]);
+  document.getElementById("bc-rows").innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+
+  // vCard 3.0: used by the "Save contact" download and the QR code
+  const [first, ...rest] = C.name.split(" ");
+  const vcard = ["BEGIN:VCARD", "VERSION:3.0",
+    `N:${rest.join(" ")};${first};;;`, `FN:${C.name}`,
+    `ORG:${C.org.replace(/,/g, "\\,")}`, `TITLE:${C.title}`,
+    ...(tel ? [`TEL;TYPE=CELL:${tel}`] : []),
+    ...C.emails.map((m, i) => `EMAIL;TYPE=INTERNET${i ? "" : ",PREF"}:${m}`),
+    `URL:${C.site}`, `URL:${C.linkedin}`, `URL:${C.github}`,
+    "END:VCARD"].join("\r\n");
+
+  try {
+    const qr = qrcode(0, "L"); qr.addData(vcard); qr.make();
+    document.getElementById("bc-qr").innerHTML = qr.createSvgTag({ cellSize: 3, margin: 0, scalable: true });
+    document.getElementById("bc-qr-note").hidden = false;
+  } catch (err) { /* QR library didn't load: the card works without it */ }
+
+  document.getElementById("bc-save").onclick = () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([vcard], { type: "text/vcard" }));
+    a.download = C.name.replace(/\s+/g, "_") + ".vcf";
+    a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  const open = () => { if (!dlg.open) dlg.showModal(); };
+  document.getElementById("bc-close").onclick = () => dlg.close();
+  dlg.addEventListener("click", ev => { if (ev.target === dlg) dlg.close(); });   // click outside the card
+  dlg.addEventListener("close", () => { if (location.hash === "#card") history.replaceState(null, "", location.pathname + location.search); });
+  document.querySelectorAll('a.cardlink').forEach(l => l.addEventListener("click", ev => { ev.preventDefault(); open(); }));
+  if (location.hash === "#card") open();
+  addEventListener("hashchange", () => { if (location.hash === "#card") open(); });
+})();
+</script>
+<!-- ===== BUSINESS CARD: script end ===== -->
+
+<!-- ===== JET ANIMATION: script ===== -->
+<script>
 /* =====================================================================
-   Hero: a liquid jet breaking up, coloured by structure parameter λ
+   JET ANIMATION: script. Draws the hero jet into <canvas id="jet">.
+   Knobs: lam(xd) = λ profile along x/D, breakX = intact-core length,
+   radius() = surface waves, spawn() = droplets, lamColor() = colour map.
    ===================================================================== */
 (() => {
   const cv = document.getElementById("jet"), ctx = cv.getContext("2d");
@@ -490,5 +610,6 @@ document.getElementById("last-updated").textContent = LAST_UPDATED;
   }
 })();
 </script>
+<!-- ===== JET ANIMATION: script end ===== -->
 </body>
 </html>
